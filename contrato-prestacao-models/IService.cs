@@ -4,16 +4,14 @@ using System.Text;
 
 namespace contrato_prestacao_models
 {
-    public interface IRepository<T>
+    public interface IService<T>
     {
-        T GetById(int id);
+        T Get(int id);
 
         IList<T> GetAll();
 
-        T Insert(T obj);
+        T Save(T obj);
 
-        void Update(T obj);
-
-        void DeleteById(int id);
+        void Delete(int id);
     }
 }

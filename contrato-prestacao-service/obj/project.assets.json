@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "contrato-prestacao-models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/contrato-prestacao-models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/contrato-prestacao-models.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "contrato-prestacao-models/1.0.0": {
+      "type": "project",
+      "path": "../contrato-prestacao-models/contrato-prestacao-models.csproj",
+      "msbuildProject": "../contrato-prestacao-models/contrato-prestacao-models.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "contrato-prestacao-models >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\note63\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\NewProject\\contrato-prestacao-api\\contrato-prestacao-models\\contrato-prestacao-models.csproj": {
+              "projectPath": "C:\\NewProject\\contrato-prestacao-api\\contrato-prestacao-models\\contrato-prestacao-models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

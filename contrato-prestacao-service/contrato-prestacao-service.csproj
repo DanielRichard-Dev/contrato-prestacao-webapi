@@ -5,4 +5,8 @@
     <RootNamespace>contrato_prestacao_service</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\contrato-prestacao-models\contrato-prestacao-models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,13 +6,6 @@ namespace contrato_prestacao_models.Prestacao
 {
     public class PrestacaoModel
     {
-        public PrestacaoModel()
-        {
-            Contrato = new ContratoModel();
-        }
-
-        public ContratoModel Contrato { get; set; }
-        public int ContratoId { get; set; }
         public int PrestacaoId { get; set; }
         public DateTime DataVencimento  { get; set; }
         public DateTime DataPagamento { get; set; }
