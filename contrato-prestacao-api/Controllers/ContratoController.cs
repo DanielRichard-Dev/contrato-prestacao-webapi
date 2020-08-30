@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace contrato_prestacao_api.Controllers
 {
@@ -11,6 +12,7 @@ namespace contrato_prestacao_api.Controllers
     [ApiController]
     public class ContratoController : ControllerBase
     {
+        private readonly IMemoryCache cache;
         [HttpGet]
         public ActionResult Teste()
         {

@@ -1,0 +1,11 @@
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\obj\Debug\netcoreapp3.1\contrato-prestacao-repository.csprojAssemblyReference.cache
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\obj\Debug\netcoreapp3.1\contrato-prestacao-repository.AssemblyInfoInputs.cache
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\obj\Debug\netcoreapp3.1\contrato-prestacao-repository.AssemblyInfo.cs
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\bin\Debug\netcoreapp3.1\contrato-prestacao-repository.deps.json
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\bin\Debug\netcoreapp3.1\contrato-prestacao-repository.dll
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\bin\Debug\netcoreapp3.1\contrato-prestacao-repository.pdb
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\bin\Debug\netcoreapp3.1\contrato-prestacao-models.dll
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\bin\Debug\netcoreapp3.1\contrato-prestacao-models.pdb
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\obj\Debug\netcoreapp3.1\contrato-prestacao-repository.csproj.CopyComplete
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\obj\Debug\netcoreapp3.1\contrato-prestacao-repository.dll
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-repository\obj\Debug\netcoreapp3.1\contrato-prestacao-repository.pdb

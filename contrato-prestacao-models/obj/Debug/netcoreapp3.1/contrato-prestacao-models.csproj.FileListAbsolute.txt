@@ -1,0 +1,8 @@
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\bin\Debug\netcoreapp3.1\contrato-prestacao-models.deps.json
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\bin\Debug\netcoreapp3.1\contrato-prestacao-models.dll
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\obj\Debug\netcoreapp3.1\contrato-prestacao-models.AssemblyInfoInputs.cache
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\obj\Debug\netcoreapp3.1\contrato-prestacao-models.AssemblyInfo.cs
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\bin\Debug\netcoreapp3.1\contrato-prestacao-models.pdb
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\obj\Debug\netcoreapp3.1\contrato-prestacao-models.dll
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\obj\Debug\netcoreapp3.1\contrato-prestacao-models.pdb
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-models\obj\Debug\netcoreapp3.1\contrato-prestacao-models.csprojAssemblyReference.cache
