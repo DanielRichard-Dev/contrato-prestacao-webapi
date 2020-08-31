@@ -10,6 +10,8 @@ namespace contrato_prestacao_models
 
         IList<T> GetAll();
 
+        IList<T> GetByContratoId(int id);
+
         T Insert(T obj);
 
         void Update(T obj);

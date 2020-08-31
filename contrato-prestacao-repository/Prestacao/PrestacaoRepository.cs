@@ -2,6 +2,7 @@
 using contrato_prestacao_repository.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace contrato_prestacao_repository.Prestacao
@@ -23,6 +24,11 @@ namespace contrato_prestacao_repository.Prestacao
         public PrestacaoModel GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<PrestacaoModel> GetByContratoId(int contratoId)
+        {
+            return DataContext.Prestacao.Where(x => x.ContratoId == contratoId).ToList();
         }
 
         public PrestacaoModel Insert(PrestacaoModel obj)

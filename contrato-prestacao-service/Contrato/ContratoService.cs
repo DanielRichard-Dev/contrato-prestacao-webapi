@@ -2,17 +2,17 @@
 using contrato_prestacao_models.Enum;
 using contrato_prestacao_models.Prestacao;
 using contrato_prestacao_models.Response;
-using contrato_prestacao_repository.Contrato;
-using contrato_prestacao_repository.Data;
 using contrato_prestacao_service.Prestacao;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace contrato_prestacao_service.Contrato
 {
     public class ContratoService : IContratoService
     {
-        private IContratoRepository repository { get; set; }
+        private IContratoRepository RepositoryContrato { get; set; }
+        public IPrestacaoRepository RepositoryPrestacao { get; set; }
 
         private void IsValid(ContratoModel contrato)
         {
@@ -26,24 +26,38 @@ namespace contrato_prestacao_service.Contrato
                 throw new Exception("Valor Financiado inválido!");
         }
 
-        public ContratoService(IContratoRepository repository)
+        public ContratoService(IContratoRepository repositoryContrato, IPrestacaoRepository repositoryPrestacao)
         {
-            this.repository = repository;
+            this.RepositoryContrato = repositoryContrato;
+            this.RepositoryPrestacao = repositoryPrestacao;
         }
 
         public ContratoModel Get(int id)
         {
-            return repository.GetById(id);
+            var contrato = RepositoryContrato.GetById(id);
+
+            contrato.Prestacoes = RepositoryPrestacao.GetByContratoId(contrato.ContratoId).ToList();
+
+            return contrato;
         }
 
         public IList<ContratoModel> GetAll()
         {
-            return repository.GetAll();
+            var _contrato = RepositoryContrato.GetAll();
+
+            foreach (var contrato in _contrato)
+            {
+                contrato.Prestacoes = RepositoryPrestacao.GetByContratoId(contrato.ContratoId).ToList();
+            }
+
+            
+
+            return _contrato;
         }
 
         public IList<ContratoModel> GetByStatus(StatusPrestacaoEnum status)
         {
-            return repository.GetByStatus(status);
+            return RepositoryContrato.GetByStatus(status);
         }
 
         public ContratoModel Insert(ContratoModel contrato)
@@ -54,35 +68,72 @@ namespace contrato_prestacao_service.Contrato
             contrato.Data = DateTime.Now;
             contrato.Prestacoes = servicePrestacoes.CalculaStatus(contrato.Prestacoes);
 
-            repository.Insert(contrato);
+            RepositoryContrato.Insert(contrato);
 
             return contrato;
         }
 
         public void Update(ContratoModel obj)
         {
-            repository.Update(obj);
+            RepositoryContrato.Update(obj);
         }
 
         public void Delete(int id)
         {
-            repository.DeleteById(id);
+            RepositoryContrato.DeleteById(id);
         }
 
         public ResponseContratoModel PopulaResponseContrato(ContratoModel contrato)
         {
-            var responseContrato = new ResponseContratoModel();
-            if (contrato.ContratoId > 0)
+            var responseContrato = new ResponseContratoModel()
             {
-                responseContrato.ContratoId = contrato.ContratoId;
-                responseContrato.Mensagem = "Contrato inserido com sucesso!";
-            }
-            else
-            {
-                responseContrato.Mensagem = "Erro ao inserir contrato!";
-            }
+                ContratoId = contrato.ContratoId,
+                Data = contrato.Data,
+                QtdParcelas = contrato.QtdParcelas,
+                ValorFinanciado = contrato.ValorFinanciado,
+                Prestacoes = PopulaPrestacaoResponse(contrato.Prestacoes)
+            };
 
             return responseContrato;
+        }
+
+        public List<ResponseContratoModel> PopulaListReponseContrato(List<ContratoModel> _contrato)
+        {
+            var _responseContrato = new List<ResponseContratoModel>();
+
+            foreach (var contrato in _contrato)
+            {
+                _responseContrato.Add(new ResponseContratoModel()
+                {
+                    ContratoId = contrato.ContratoId,
+                    Data = contrato.Data,
+                    QtdParcelas = contrato.QtdParcelas,
+                    ValorFinanciado = contrato.ValorFinanciado,
+                    Prestacoes = PopulaPrestacaoResponse(contrato.Prestacoes)
+                });
+            }
+
+            return _responseContrato;
+        }
+
+        public List<ResponsePrestacaoModel> PopulaPrestacaoResponse(List<PrestacaoModel> _prestacao)
+        {
+            var _responsePrestacao = new List<ResponsePrestacaoModel>();
+
+            foreach (var prestacao in _prestacao)
+            {
+                _responsePrestacao.Add(new ResponsePrestacaoModel()
+                {
+                    PrestacaoId = prestacao.PrestacaoId,
+                    ContratoId = prestacao.ContratoId,
+                    DataVencimento = prestacao.DataVencimento,
+                    DataPagamento = prestacao.DataPagamento,
+                    Valor = prestacao.Valor,
+                    Status = prestacao.Status,
+                });
+            }
+
+            return _responsePrestacao;
         }
     }
 }

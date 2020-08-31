@@ -19,15 +19,20 @@ namespace contrato_prestacao_repository.Contrato
 
         public ContratoModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return DataContext.Contrato.Where(x => x.ContratoId == id).FirstOrDefault();
         }
 
-        public List<ContratoModel> GetAll()
+        IList<ContratoModel> IRepository<ContratoModel>.GetAll()
+        {
+            return DataContext.Contrato.ToList();
+        }
+
+        public IList<ContratoModel> GetByStatus(StatusPrestacaoEnum status)
         {
             throw new NotImplementedException();
         }
 
-        public IList<ContratoModel> GetByStatus(StatusPrestacaoEnum status)
+        public IList<ContratoModel> GetByContratoId(int id)
         {
             throw new NotImplementedException();
         }
@@ -43,17 +48,15 @@ namespace contrato_prestacao_repository.Contrato
 
         public void Update(ContratoModel obj)
         {
-            throw new NotImplementedException();
+            DataContext.Contrato.Update(obj);
+            DataContext.SaveChanges();
         }
 
         public void DeleteById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        IList<ContratoModel> IRepository<ContratoModel>.GetAll()
-        {
-            return DataContext.Contrato.ToList();
+            var contrato = GetById(id);
+            DataContext.Contrato.Remove(contrato);
+            DataContext.SaveChanges();
         }
     }
 }
