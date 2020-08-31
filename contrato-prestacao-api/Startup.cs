@@ -1,5 +1,4 @@
 using System;
-using contrato_prestacao_api.Data;
 using contrato_prestacao_repository.Contrato;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using contrato_prestacao_repository.Data;
 
 namespace contrato_prestacao_api
 {
@@ -23,6 +23,10 @@ namespace contrato_prestacao_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+
+            services.AddScoped<DataContext, DataContext>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -42,10 +46,6 @@ namespace contrato_prestacao_api
             });
 
             services.AddTransient<ContratoRepository,ContratoRepository>();
-
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
-
-
 
             services.AddMemoryCache();
         }
@@ -73,7 +73,7 @@ namespace contrato_prestacao_api
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                c.SwaggerEndpoint("v1/swagger.json",
                     "Contrato Prestação API");
             });
         }

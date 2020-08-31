@@ -109,6 +109,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.entityframeworkcore.inmemory": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

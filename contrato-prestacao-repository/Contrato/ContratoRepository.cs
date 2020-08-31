@@ -1,13 +1,22 @@
 ﻿using contrato_prestacao_models;
 using contrato_prestacao_models.Contrato;
 using contrato_prestacao_models.Enum;
+using contrato_prestacao_repository.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace contrato_prestacao_repository.Contrato
 {
     public class ContratoRepository : IContratoRepository
     {
+        public DataContext DataContext { get; set; }
+
+        public ContratoRepository(DataContext datacontext)
+        {
+            DataContext = datacontext;
+        }
+
         public ContratoModel GetById(int id)
         {
             throw new NotImplementedException();
@@ -25,7 +34,11 @@ namespace contrato_prestacao_repository.Contrato
 
         public ContratoModel Insert(ContratoModel obj)
         {
-            throw new NotImplementedException();
+            var contrato = DataContext.Add(obj);
+            DataContext.SaveChanges();
+            obj.ContratoId = contrato.Entity.ContratoId;
+
+            return obj;
         }
 
         public void Update(ContratoModel obj)
@@ -40,7 +53,7 @@ namespace contrato_prestacao_repository.Contrato
 
         IList<ContratoModel> IRepository<ContratoModel>.GetAll()
         {
-            throw new NotImplementedException();
+            return DataContext.Contrato.ToList();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace contrato_prestacao_models.Prestacao
         [Key]
         public int PrestacaoId { get; set; }
 
+        public int ContratoId { get; set; }
+
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public DateTime DataVencimento  { get; set; }
 
@@ -20,5 +22,7 @@ namespace contrato_prestacao_models.Prestacao
         public decimal Valor { get; set; }
 
         public StatusPrestacaoEnum Status { get; set; }
+
+        public ContratoModel Contrato { get; set; }
     }
 }

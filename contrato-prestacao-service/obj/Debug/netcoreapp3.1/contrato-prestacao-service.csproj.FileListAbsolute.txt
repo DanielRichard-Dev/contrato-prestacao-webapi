@@ -9,3 +9,5 @@ C:\NewProject\contrato-prestacao-api\contrato-prestacao-service\obj\Debug\netcor
 C:\NewProject\contrato-prestacao-api\contrato-prestacao-service\obj\Debug\netcoreapp3.1\contrato-prestacao-service.csproj.CopyComplete
 C:\NewProject\contrato-prestacao-api\contrato-prestacao-service\obj\Debug\netcoreapp3.1\contrato-prestacao-service.dll
 C:\NewProject\contrato-prestacao-api\contrato-prestacao-service\obj\Debug\netcoreapp3.1\contrato-prestacao-service.pdb
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-service\bin\Debug\netcoreapp3.1\contrato-prestacao-repository.dll
+C:\NewProject\contrato-prestacao-api\contrato-prestacao-service\bin\Debug\netcoreapp3.1\contrato-prestacao-repository.pdb

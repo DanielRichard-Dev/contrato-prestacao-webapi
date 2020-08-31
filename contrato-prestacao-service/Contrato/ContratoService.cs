@@ -1,6 +1,9 @@
 ﻿using contrato_prestacao_models.Contrato;
 using contrato_prestacao_models.Enum;
 using contrato_prestacao_models.Prestacao;
+using contrato_prestacao_models.Response;
+using contrato_prestacao_repository.Contrato;
+using contrato_prestacao_repository.Data;
 using contrato_prestacao_service.Prestacao;
 using System;
 using System.Collections.Generic;
@@ -16,10 +19,10 @@ namespace contrato_prestacao_service.Contrato
             if (contrato.Prestacoes == null)
                 throw new Exception("Prestações inválidas!");
 
-            if (contrato.QtdParcelas > 0)
+            if (contrato.QtdParcelas <= 0)
                 throw new Exception("Parcelas inválidas!");
 
-            if (contrato.ValorFinanciado > 0)
+            if (contrato.ValorFinanciado <= 0)
                 throw new Exception("Valor Financiado inválido!");
         }
 
@@ -43,29 +46,43 @@ namespace contrato_prestacao_service.Contrato
             return repository.GetByStatus(status);
         }
 
-        public ContratoModel Save(ContratoModel obj)
+        public ContratoModel Insert(ContratoModel contrato)
         {
-            IsValid(obj);
+            IsValid(contrato);
 
-            if (obj.ContratoId == 0)
-            {
-                var servicePrestacoes = new PrestacaoService(obj.Prestacoes);
-                obj.Data = DateTime.Now;
-                obj.Prestacoes = servicePrestacoes.CalculaStatus(obj.Prestacoes);
+            var servicePrestacoes = new PrestacaoService(contrato.Prestacoes);
+            contrato.Data = DateTime.Now;
+            contrato.Prestacoes = servicePrestacoes.CalculaStatus(contrato.Prestacoes);
 
-                repository.Insert(obj);
-            }
-            else
-            {
-                repository.Update(obj);
-            }
+            repository.Insert(contrato);
 
-            return obj;
+            return contrato;
+        }
+
+        public void Update(ContratoModel obj)
+        {
+            repository.Update(obj);
         }
 
         public void Delete(int id)
         {
             repository.DeleteById(id);
+        }
+
+        public ResponseContratoModel PopulaResponseContrato(ContratoModel contrato)
+        {
+            var responseContrato = new ResponseContratoModel();
+            if (contrato.ContratoId > 0)
+            {
+                responseContrato.ContratoId = contrato.ContratoId;
+                responseContrato.Mensagem = "Contrato inserido com sucesso!";
+            }
+            else
+            {
+                responseContrato.Mensagem = "Erro ao inserir contrato!";
+            }
+
+            return responseContrato;
         }
     }
 }

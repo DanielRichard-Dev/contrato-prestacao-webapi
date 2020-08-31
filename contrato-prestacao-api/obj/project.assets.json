@@ -346,6 +346,18 @@
           "lib/netstandard2.0/_._": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/3.1.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.7"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
         "type": "package",
         "build": {
@@ -2057,6 +2069,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.7",
+          "Microsoft.entityframeworkcore.inmemory": "3.1.7",
           "contrato-prestacao-models": "1.0.0"
         },
         "compile": {
@@ -2064,6 +2078,20 @@
         },
         "runtime": {
           "bin/placeholder/contrato-prestacao-repository.dll": {}
+        }
+      },
+      "contrato-prestacao-service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "contrato-prestacao-models": "1.0.0",
+          "contrato-prestacao-repository": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/contrato-prestacao-service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/contrato-prestacao-service.dll": {}
         }
       }
     }
@@ -2410,6 +2438,20 @@
         "lib/netstandard2.0/_._",
         "microsoft.entityframeworkcore.analyzers.3.1.7.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/3.1.7": {
+      "sha512": "tzNo8eJVLq6NkJ5+pd2EEqtEM5tS1GQpd0btZtIOoGyJwCivv2MgT2eQEAbmyfcCAwnizxZnCAQaEeef6+uWDw==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/3.1.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.3.1.7.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
@@ -6779,14 +6821,21 @@
       "type": "project",
       "path": "../contrato-prestacao-repository/contrato-prestacao-repository.csproj",
       "msbuildProject": "../contrato-prestacao-repository/contrato-prestacao-repository.csproj"
+    },
+    "contrato-prestacao-service/1.0.0": {
+      "type": "project",
+      "path": "../contrato-prestacao-service/contrato-prestacao-service.csproj",
+      "msbuildProject": "../contrato-prestacao-service/contrato-prestacao-service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.EntityFrameworkCore >= 3.1.7",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
+      "Microsoft.entityframeworkcore.inmemory >= 3.1.7",
       "Swashbuckle.AspNetCore >= 5.5.1",
-      "contrato-prestacao-repository >= 1.0.0"
+      "contrato-prestacao-repository >= 1.0.0",
+      "contrato-prestacao-service >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6823,6 +6872,9 @@
           "projectReferences": {
             "C:\\NewProject\\contrato-prestacao-api\\contrato-prestacao-repository\\contrato-prestacao-repository.csproj": {
               "projectPath": "C:\\NewProject\\contrato-prestacao-api\\contrato-prestacao-repository\\contrato-prestacao-repository.csproj"
+            },
+            "C:\\NewProject\\contrato-prestacao-api\\contrato-prestacao-service\\contrato-prestacao-service.csproj": {
+              "projectPath": "C:\\NewProject\\contrato-prestacao-api\\contrato-prestacao-service\\contrato-prestacao-service.csproj"
             }
           }
         }
@@ -6843,6 +6895,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.4, )"
+          },
+          "Microsoft.entityframeworkcore.inmemory": {
+            "target": "Package",
+            "version": "[3.1.7, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

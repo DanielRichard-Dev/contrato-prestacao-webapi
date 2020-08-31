@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\contrato-prestacao-models\contrato-prestacao-models.csproj" />
+    <ProjectReference Include="..\contrato-prestacao-repository\contrato-prestacao-repository.csproj" />
   </ItemGroup>
 
 </Project>
