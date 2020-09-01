@@ -49,9 +49,16 @@ namespace contrato_prestacao_api.Controllers
 
                 var contrato = service.Get(id);
 
-                response.ObjReturn = service.PopulaResponseContrato(contrato);
+                if (contrato != null)
+                {
+                    response.ObjReturn = service.PopulaResponseContrato(contrato);
 
-                return Ok(response);
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest("O contrato não foi encontrado!");
+                }
             }
             catch (Exception ex)
             {
@@ -122,7 +129,7 @@ namespace contrato_prestacao_api.Controllers
             }
         }
 
-        [HttpGet("DeleteById/{id:int}")]
+        [HttpDelete("DeleteById/{id:int}")]
         public ActionResult DeleteById(
             [FromServices] DataContext context,
             int id)

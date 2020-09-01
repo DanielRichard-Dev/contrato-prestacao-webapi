@@ -33,9 +33,9 @@ namespace contrato_prestacao_repository.Prestacao
 
         public PrestacaoModel Insert(PrestacaoModel obj)
         {
-            var teste = DataContext.Add(obj);            
+            var prestacao = DataContext.Add(obj);            
             DataContext.SaveChanges();
-            obj.PrestacaoId = teste.Entity.PrestacaoId;
+            obj.PrestacaoId = prestacao.Entity.PrestacaoId;
 
             return obj;
         }

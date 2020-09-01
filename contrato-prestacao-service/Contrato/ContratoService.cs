@@ -12,7 +12,7 @@ namespace contrato_prestacao_service.Contrato
     public class ContratoService : IContratoService
     {
         private IContratoRepository RepositoryContrato { get; set; }
-        public IPrestacaoRepository RepositoryPrestacao { get; set; }
+        private IPrestacaoRepository RepositoryPrestacao { get; set; }
 
         private void IsValid(ContratoModel contrato)
         {
@@ -36,7 +36,11 @@ namespace contrato_prestacao_service.Contrato
         {
             var contrato = RepositoryContrato.GetById(id);
 
-            contrato.Prestacoes = RepositoryPrestacao.GetByContratoId(contrato.ContratoId).ToList();
+            if (contrato != null)
+            {
+                contrato.Prestacoes = RepositoryPrestacao.GetByContratoId(contrato.ContratoId).ToList();
+                contrato.Prestacoes = new PrestacaoService(contrato.Prestacoes).CalculaStatus(contrato.Prestacoes);
+            }
 
             return contrato;
         }
@@ -44,13 +48,16 @@ namespace contrato_prestacao_service.Contrato
         public IList<ContratoModel> GetAll()
         {
             var _contrato = RepositoryContrato.GetAll();
-
-            foreach (var contrato in _contrato)
-            {
-                contrato.Prestacoes = RepositoryPrestacao.GetByContratoId(contrato.ContratoId).ToList();
-            }
-
             
+
+            if (_contrato.Count > 0)
+            {
+                foreach (var contrato in _contrato)
+                {
+                    contrato.Prestacoes = RepositoryPrestacao.GetByContratoId(contrato.ContratoId).ToList();
+                    contrato.Prestacoes = new PrestacaoService(contrato.Prestacoes).CalculaStatus(contrato.Prestacoes);
+                }
+            }         
 
             return _contrato;
         }
@@ -64,10 +71,7 @@ namespace contrato_prestacao_service.Contrato
         {
             IsValid(contrato);
 
-            var servicePrestacoes = new PrestacaoService(contrato.Prestacoes);
             contrato.Data = DateTime.Now;
-            contrato.Prestacoes = servicePrestacoes.CalculaStatus(contrato.Prestacoes);
-
             RepositoryContrato.Insert(contrato);
 
             return contrato;
